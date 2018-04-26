@@ -7,7 +7,7 @@ import java.util.*;
         This program uses "brute force" to create a n*n magic square.
         This really straigthforward implementation is rather slow (When n>3 the program
         takes way too much time to finish). There are more sophisticated methods/algorithms
-        to make magic squares.
+        to make magic squares but those are for some other time.
 
         The program shuffles numbers from 1 to n^2 in the square (matrix) until all rows
         and columns add up to the same sum. There is a special case where the diagonal
