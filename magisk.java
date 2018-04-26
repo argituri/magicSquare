@@ -17,11 +17,11 @@ import java.util.Random;
 
 
 
-public class magisk {
+public class magisk implements Runnable {
 
-    public static void main(String[] args) {
+    public static void run() {
         long aloitusAika = System.currentTimeMillis();
-        int n = 3 ;
+        int n = 2 ;
         int sqr = n*n;
         int[] nums = new int[sqr];
         boolean onkoTaika = false;
