@@ -1,5 +1,5 @@
 
-import java.util.Random;
+import java.util.*;
 
 
 /*
@@ -19,9 +19,9 @@ import java.util.Random;
 
 public class magisk implements Runnable {
 
-    public static void run() {
+    public void run() {
         long aloitusAika = System.currentTimeMillis();
-        int n = 2 ;
+        int n = 3 ;
         int sqr = n*n;
         int[] nums = new int[sqr];
         boolean onkoTaika = false;
