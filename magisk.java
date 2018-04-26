@@ -10,9 +10,8 @@ import java.util.*;
         to make magic squares but those are for some other time.
 
         The program shuffles numbers from 1 to n^2 in the square (matrix) until all rows
-        and columns add up to the same sum. There is a special case where the diagonal
-        also adds up to the same sum, but that isn't handled in any special
-        way by the program.
+        and columns add up to the same sum. NOTE: this program creates a square whose diagonal 
+        doesn't necessarily add up to the 'magic number' M = n * ((n * n + 1) / 2)
 
  */
 
@@ -22,6 +21,7 @@ public class magisk implements Runnable {
 
         /*
         Starts the progress to find a n*n magic square with numbers from n to n^2
+        The rows and 
         */
         
     public void run() {
@@ -62,8 +62,14 @@ public class magisk implements Runnable {
 
                 /*
                  *   Jos summat ovat ovat samat, printataan neliö
-                 *   ja yritysten lkm
+                 *   ja yritysten lkm.
+                 *   If the sums of the rows and columns are the same
+                 *   --> print the matrix, # of tries and passed time (ms)
+                 *  
+                 *   Calls the method areAllSame with an array of the sums 
+                 *   of the columns and rows from the generated matrix
                  */
+                    
                 if (areAllSame(tulokset, M)) {
                     System.out.println();
                     System.out.println();
