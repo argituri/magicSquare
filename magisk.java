@@ -20,68 +20,72 @@ import java.util.*;
 public class magisk implements Runnable {
 
     public void run() {
-        long aloitusAika = System.currentTimeMillis();
-        int n = 3 ;
-        int sqr = n*n;
-        int[] nums = new int[sqr];
-        boolean onkoTaika = false;
-        int M = n*((n*n+1)/2);
-        for (int i = 0;i<sqr;i++){
-            nums[i] = i+1;
-            System.out.println(nums[i]);
-        }
-        int kierros = 0;
-        while(!onkoTaika) {
-            int[][] tryOut = magicMaker(n, nums);
+        try {
+            long aloitusAika = System.currentTimeMillis();
+            int n = 3;
+            int sqr = n * n;
+            int[] nums = new int[sqr];
+            boolean onkoTaika = false;
+            int M = n * ((n * n + 1) / 2);
+            for (int i = 0; i < sqr; i++) {
+                nums[i] = i + 1;
+                System.out.println(nums[i]);
+            }
+            int kierros = 0;
+            while (!onkoTaika) {
+                int[][] tryOut = magicMaker(n, nums);
 
 
-
-            int[] tulokset = new int[2*n];
-            int tuloksetKohta = -1;
-            while (tuloksetKohta<tulokset.length/2-1){
-                for (int i=0;i<n;i++){
-                    tuloksetKohta++;
-                    for (int j = 0;j<n;j++){
-                        tulokset[tuloksetKohta] += tryOut[i][j];
+                int[] tulokset = new int[2 * n];
+                int tuloksetKohta = -1;
+                while (tuloksetKohta < tulokset.length / 2 - 1) {
+                    for (int i = 0; i < n; i++) {
+                        tuloksetKohta++;
+                        for (int j = 0; j < n; j++) {
+                            tulokset[tuloksetKohta] += tryOut[i][j];
+                        }
                     }
                 }
-            }
-            while (tuloksetKohta<tulokset.length-1){
-                for (int i=0;i<n;i++){
-                    tuloksetKohta++;
-                    for (int j = 0;j<n;j++){
-                        tulokset[tuloksetKohta] += tryOut[j][i];
+                while (tuloksetKohta < tulokset.length - 1) {
+                    for (int i = 0; i < n; i++) {
+                        tuloksetKohta++;
+                        for (int j = 0; j < n; j++) {
+                            tulokset[tuloksetKohta] += tryOut[j][i];
+                        }
                     }
                 }
-            }
 
-            /*
-            *   Jos summat ovat ovat samat, printataan neliö
-            *   ja yritysten lkm
-            */
-            if(areAllSame(tulokset, M)) {
-                System.out.println();
-                System.out.println();
-                System.out.println("Taikaneliö löytyi!");
-                System.out.println();
-                for (int[] aTryOut : tryOut) {
-                    for (int j = 0; j < tryOut.length; j++) {
-                        System.out.print(aTryOut[j] + " ");
+                /*
+                 *   Jos summat ovat ovat samat, printataan neliö
+                 *   ja yritysten lkm
+                 */
+                if (areAllSame(tulokset, M)) {
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("Taikaneliö löytyi!");
+                    System.out.println();
+                    for (int[] aTryOut : tryOut) {
+                        for (int j = 0; j < tryOut.length; j++) {
+                            System.out.print(aTryOut[j] + " ");
+                        }
+                        System.out.println();
                     }
+                    onkoTaika = true;
+                    System.out.println();
+                    System.out.println("Taikaneliötä yritettiin muodostaa " + kierros + " kertaa");
+                    long loppuAika = System.currentTimeMillis() - aloitusAika;
+                    System.out.println("aikaa tähän meni " + loppuAika + " ms");
+                    System.out.println();
                     System.out.println();
                 }
-                onkoTaika = true;
-                System.out.println();
-                System.out.println("Taikaneliötä yritettiin muodostaa " + kierros + " kertaa");
-                long loppuAika = System.currentTimeMillis()-aloitusAika;
-                System.out.println("aikaa tähän meni " + loppuAika + " ms");
-                System.out.println();
-                System.out.println();
+                kierros++;
+
             }
-            kierros++;
 
         }
-
+        catch(Exception e){
+            System.out.println("Jotain tapahtui");
+        }
     }
 
 

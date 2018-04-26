@@ -14,7 +14,7 @@ public class prosessi {
     public static void main(String[] args) {
         int[] n = new int[10];
         for (int i:n){
-            new Thread(new magisk());
+            (new Thread(new magisk())).start();
         }
     }
 }
