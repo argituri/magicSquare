@@ -6,7 +6,8 @@ import java.util.*;
         Created by Artturi Suominen
         This program uses "brute force" to create a n*n magic square.
         This really straigthforward implementation is rather slow (When n>3 the program
-        takes way too much time to finish).
+        takes way too much time to finish). There are more sophisticated methods/algorithms
+        to make magic squares.
 
         The program shuffles numbers from 1 to n^2 in the square (matrix) until all rows
         and columns add up to the same sum. There is a special case where the diagonal
@@ -19,6 +20,10 @@ import java.util.*;
 
 public class magisk implements Runnable {
 
+        /*
+        Starts the progress to find a n*n magic square with numbers from n to n^2
+        */
+        
     public void run() {
         try {
             long aloitusAika = System.currentTimeMillis();
@@ -84,12 +89,17 @@ public class magisk implements Runnable {
 
         }
         catch(Exception e){
-            System.out.println("Jotain tapahtui");
+            System.out.println("Virhe tapahtui");
         }
     }
 
 
-    //Muodostetaan yrite, eli satunnaistettu neliö
+    /*
+    Palauttaa yritteen, eli satunnaistetun (neliö)matriisin.
+    Ottaa parametreikseen
+    Returns a matrix with numbers 1...n^2 shuffled randomly.
+    */
+        
     private static int[][] magicMaker(int m, int[] arr){
         Random asettelija = new Random();
         int[][] yrite = new int[m][m];
@@ -117,7 +127,11 @@ public class magisk implements Runnable {
         return yrite;
     }
 
-    //Jos rivien tai sarakkeiden summasta löytyy yksikin "väärä" summa, palautetaan false, muuten true
+    /*
+    Jos rivien tai sarakkeiden summasta löytyy yksikin "väärä" summa, palautetaan false, muuten true
+    Checks whether all the integers in int array summat are the same number (taikaluku)
+    */
+        
     private static boolean areAllSame(int[] summat, int taikaLuku){
         for (int aSummat : summat) {
             if (aSummat != taikaLuku)
